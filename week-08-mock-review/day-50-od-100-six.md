@@ -1,0 +1,332 @@
+# Day 50 — OD 100分 × 6 实战
+
+## 1. 贪心商人 (OD)
+
+### 问题描述
+一个商人决定在连续 N 天里买卖一种商品。他每天可以买入或卖出最多 1 件商品。已知每天的商品价格列表 prices，商人最初有 0 件商品和无限资金。请计算商人在 N 天内能获得的最大利润。
+
+### 输入格式
+```
+第一行：N，表示天数 (1 ≤ N ≤ 10^5)
+第二行：N 个整数，表示每天的价格 prices[i] (1 ≤ prices[i] ≤ 10^4)
+```
+
+### 输出格式
+一个整数，表示最大利润。
+
+### 样例输入
+```
+7
+1 2 3 4 5 6 7
+```
+
+### 样例输出
+```
+0
+```
+
+### 解题思路
+贪心策略：每天如果持有商品，则比较当天价格和之前买入价；如果当天价格更高，继续持有；否则卖出并在当天买入。但本题实际是求所有上涨日间的差价之和（可以当天卖当天买，不限制持有数量时，等价于最高点卖最低点买）。
+
+实际上，本题的贪心核心是：如果第 i 天价格 > 第 i-1 天价格，就在第 i-1 天买入、第 i 天卖出，累加差价。
+
+### Python 解法
+
+```python
+def max_profit(prices):
+    profit = 0
+    for i in range(1, len(prices)):
+        if prices[i] > prices[i - 1]:
+            profit += prices[i] - prices[i - 1]
+    return profit
+
+if __name__ == "__main__":
+    N = int(input().strip())
+    prices = list(map(int, input().strip().split()))
+    print(max_profit(prices))
+```
+
+**复杂度**: O(N) 时间, O(1) 空间
+
+---
+
+## 2. 租车骑绿岛 (OD)
+
+### 问题描述
+一个部门有 N 个人要去绿岛骑自行车，每辆自行车最多载两人。已知每个人的体重，每辆车的载重上限为 limit。问最少需要多少辆车才能让所有人骑上自行车。
+
+### 输入格式
+```
+第一行：limit (1 ≤ limit ≤ 10^4)
+第二行：N (1 ≤ N ≤ 10^5)
+第三行：N 个整数，表示每个人的体重 (1 ≤ weight ≤ limit)
+```
+
+### 输出格式
+一个整数，表示最少需要的车辆数。
+
+### 样例输入
+```
+150
+6
+70 80 60 90 50 100
+```
+
+### 样例输出
+```
+4
+```
+
+### 解题思路
+贪心 + 双指针。将体重排序，最轻的和最重的尝试配对。如果最轻 + 最重 ≤ limit，则两人一车；否则最重单独一车。
+
+### Python 解法
+
+```python
+def min_boats(limit, weights):
+    weights.sort()
+    left, right = 0, len(weights) - 1
+    boats = 0
+    while left <= right:
+        if left == right:
+            boats += 1
+            break
+        if weights[left] + weights[right] <= limit:
+            left += 1
+            right -= 1
+        else:
+            right -= 1
+        boats += 1
+    return boats
+
+if __name__ == "__main__":
+    limit = int(input().strip())
+    n = int(input().strip())
+    weights = list(map(int, input().strip().split()))
+    print(min_boats(limit, weights))
+```
+
+**复杂度**: O(N log N) 时间, O(1) 空间
+
+---
+
+## 3. 打印机队列 (OD)
+
+### 问题描述
+有一个打印机队列，每个打印任务有优先级（1-9，数字越大优先级越高）。队列按以下规则处理：
+1. 每次从队首取出一个任务
+2. 如果队列中有比该任务优先级更高的任务，则将该任务移到队尾
+3. 否则，执行该任务
+
+给定初始队列和你的任务在队列中的初始位置（0-indexed），问你的任务在第几个被执行。
+
+### 输入格式
+```
+第一行：T，表示测试用例数
+每个测试用例两行：
+  第一行：N M (N个任务, M是你的任务位置)
+  第二行：N个整数，表示优先级
+```
+
+### 输出格式
+每个测试用例输出一个整数，表示你的任务被执行的顺序号。
+
+### 样例输入
+```
+1
+6 0
+1 1 9 1 1 1
+```
+
+### 样例输出
+```
+5
+```
+
+### Python 解法
+
+```python
+from collections import deque
+
+def printer_queue(n, m, priorities):
+    q = deque([(p, i == m) for i, p in enumerate(priorities)])
+    count = 0
+    while q:
+        cur = q.popleft()
+        if any(cur[0] < task[0] for task in q):
+            q.append(cur)
+        else:
+            count += 1
+            if cur[1]:
+                return count
+    return -1
+
+if __name__ == "__main__":
+    T = int(input().strip())
+    for _ in range(T):
+        n, m = map(int, input().strip().split())
+        priorities = list(map(int, input().strip().split()))
+        print(printer_queue(n, m, priorities))
+```
+
+**复杂度**: O(N²) 最坏, 可用优先队列优化
+
+---
+
+## 4. 堆栈中的剩余数字 (OD)
+
+### 问题描述
+给定一个整数序列，依次入栈。当入栈的数字与栈顶元素之和等于栈中下一个元素时，弹出栈顶两个元素，将它们的和入栈。重复此过程直到无法再合并。输出最终栈中从栈底到栈顶的所有元素。
+
+### 输入格式
+```
+第一行：N (1 ≤ N ≤ 10^5)
+第二行：N 个整数
+```
+
+### 输出格式
+一行整数，从栈底到栈顶的剩余元素，空格分隔。
+
+### 样例输入
+```
+5
+3 6 4 2 5
+```
+
+### 样例输出
+```
+3 6 9 5
+```
+
+### 解题思路
+模拟栈操作。每次入栈后检查栈顶三个元素是否满足条件。
+
+### Python 解法
+
+```python
+def stack_remaining(arr):
+    stack = []
+    for num in arr:
+        stack.append(num)
+        while len(stack) >= 3 and stack[-1] + stack[-2] == stack[-3]:
+            a = stack.pop()
+            b = stack.pop()
+            c = stack.pop()
+            stack.append(a + b)
+    return stack
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    arr = list(map(int, input().strip().split()))
+    result = stack_remaining(arr)
+    print(" ".join(map(str, result)))
+```
+
+**复杂度**: O(N) 时间, O(N) 空间
+
+---
+
+## 5. 全量和已占用字符集 (OD)
+
+### 问题描述
+给定一个全量字符集（包含所有可用字符及其数量）和一个已占用字符集（已使用的字符及其数量），请计算剩余可用字符集。字符为小写字母，每个字符只出现一次在全量字符集中。
+
+### 输入格式
+```
+第一行：全量字符集，格式为 a:1,b:2,c:3
+第二行：已占用字符集，格式为 a:1,b:1
+```
+
+### 输出格式
+剩余可用字符集，相同格式，数量为0的不输出。
+
+### 样例输入
+```
+a:1,b:2,c:3
+a:1,b:1
+```
+
+### 样例输出
+```
+b:1,c:3
+```
+
+### Python 解法
+
+```python
+def parse_char_set(s):
+    result = {}
+    for part in s.split(","):
+        char, count = part.split(":")
+        result[char] = int(count)
+    return result
+
+def remaining(full_str, used_str):
+    full = parse_char_set(full_str)
+    used = parse_char_set(used_str)
+    for ch, cnt in used.items():
+        if ch in full:
+            full[ch] -= cnt
+            if full[ch] == 0:
+                del full[ch]
+    return ",".join(f"{ch}:{cnt}" for ch, cnt in sorted(full.items()))
+
+if __name__ == "__main__":
+    full_str = input().strip()
+    used_str = input().strip()
+    print(remaining(full_str, used_str))
+```
+
+**复杂度**: O(N) 时间, O(1) 空间
+
+---
+
+## 6. 模拟商场优惠打折 (OD)
+
+### 问题描述
+商场有三种优惠方式：
+1. 满减：满100减10，可叠加（每满100减10）
+2. 打折：打92折（乘以0.92，向下取整）
+3. 无门槛：每满5件减5（每5件减5，不累计到下一组）
+
+每种优惠只能用一次。给定一个订单总金额和商品数量，求使用一种优惠后的最低价格。
+
+### 输入格式
+```
+第一行：M N (M 订单金额, N 商品数量)
+```
+
+### 输出格式
+三个整数，分别表示使用满减、打折、无门槛优惠后的价格，空格分隔。
+
+### 样例输入
+```
+210 12
+```
+
+### 样例输出
+```
+190 193 200
+```
+
+### Python 解法
+
+```python
+def discount_full_reduction(m):
+    return m - (m // 100) * 10
+
+def discount_percent(m):
+    return int(m * 0.92)
+
+def discount_no_threshold(m, n):
+    return m - (n // 5) * 5
+
+if __name__ == "__main__":
+    m, n = map(int, input().strip().split())
+    r1 = discount_full_reduction(m)
+    r2 = discount_percent(m)
+    r3 = discount_no_threshold(m, n)
+    print(r1, r2, r3)
+```
+
+**复杂度**: O(1) 时间, O(1) 空间
