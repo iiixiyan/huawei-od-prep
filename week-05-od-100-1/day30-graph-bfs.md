@@ -22,6 +22,25 @@ def bfs(start):
 ## 🧩 刷题任务（6题）
 
 ### 1. Course Schedule（⭐⭐） 来源：T150
+**题目**：你这个学期必须选修 `numCourses` 门课程，记为 `0` 到 `numCourses - 1` 。
+
+在选修某些课程之前需要一些先修课程。 先修课程按数组 `prerequisites` 给出，其中 `prerequisites[i] = [ai, bi]` ，表示如果要学习课程 `ai` 则 **必须** 先学习课程  `bi` 。
+
+- 例如，先修课程对 `[0, 1]` 表示：想要学习课程 `0` ，你需要先完成课程 `1` 。
+
+请你判断是否可能完成所有课程的学习？如果可以，返回 `true` ；否则，返回 `false` 。
+
+**示例 1：**
+
+```
+输入：numCourses = 2, prerequisites = [[1,0]]
+输出：true
+解释：总共有 2 门课程。学习课程 1 之前，你需要完成课程 0 。这是可能的。
+```
+
+**示例 2：**
+
+**难度**：中等
 **思路**：拓扑排序(Kahn算法).计算入度,将入度为0的节点入队,逐个出队并减少邻居入度.最后检查修完的课程数是否等于总课程数.
 ```python
 def canFinish(self, numCourses, prerequisites):
@@ -30,7 +49,7 @@ def canFinish(self, numCourses, prerequisites):
     for a, b in prerequisites:
         graph[b].append(a)
         indegree[a] += 1
-    
+
     q = deque([i for i in range(numCourses) if indegree[i] == 0])
     count = 0
     while q:
@@ -44,6 +63,25 @@ def canFinish(self, numCourses, prerequisites):
 ```
 
 ### 2. Course Schedule II（⭐⭐） 来源：T150/O
+**题目**：你这个学期必须选修 `numCourses` 门课程，记为 `0` 到 `numCourses - 1` 。
+
+在选修某些课程之前需要一些先修课程。 先修课程按数组 `prerequisites` 给出，其中 `prerequisites[i] = [ai, bi]` ，表示如果要学习课程 `ai` 则 **必须** 先学习课程  `bi` 。
+
+- 例如，先修课程对 `[0, 1]` 表示：想要学习课程 `0` ，你需要先完成课程 `1` 。
+
+请你判断是否可能完成所有课程的学习？如果可以，返回 `true` ；否则，返回 `false` 。
+
+**示例 1：**
+
+```
+输入：numCourses = 2, prerequisites = [[1,0]]
+输出：true
+解释：总共有 2 门课程。学习课程 1 之前，你需要完成课程 0 。这是可能的。
+```
+
+**示例 2：**
+
+**难度**：中等
 **思路**：拓扑排序并返回课程顺序.与上题同理,出队时记录到结果列表.若存在环(修不完所有课程)返回空列表.
 ```python
 def findOrder(self, numCourses, prerequisites):
@@ -52,7 +90,7 @@ def findOrder(self, numCourses, prerequisites):
     for a, b in prerequisites:
         graph[b].append(a)
         indegree[a] += 1
-    
+
     q = deque([i for i in range(numCourses) if indegree[i] == 0])
     res = []
     while q:
@@ -66,6 +104,21 @@ def findOrder(self, numCourses, prerequisites):
 ```
 
 ### 3. Snakes and Ladders（⭐⭐⭐） 来源：T150
+**题目**：给你一个大小为 `n x n` 的整数矩阵 `board` ，方格按从 `1` 到 `n2` 编号，编号遵循 转行交替方式** **，**从左下角开始** （即，从 `board[n - 1][0]` 开始）的每一行改变方向。
+
+你一开始位于棋盘上的方格  `1`。每一回合，玩家需要从当前方格 `curr` 开始出发，按下述要求前进：
+
+- 选定目标方格 `next` ，目标方格的编号在范围 `[curr + 1, min(curr + 6, n2)]` 。
+
+- 该选择模拟了掷 **六面体骰子** 的情景，无论棋盘大小如何，玩家最多只能有 6 个目的地。
+
+- 传送玩家：如果目标方格 `next` 处存在蛇或梯子，那么玩家会传送到蛇或梯子的目的地。否则，玩家传送到目标方格 `next` 。
+
+- 当玩家到达编号 `n2` 的方格时，游戏结束。
+
+如果 `board[r][c] != -1` ，位于 `r` 行 `c` 列的棋盘格中可能存在 “蛇” 或 “梯子”。那个蛇或梯子的目的地将会是 `board[r][c]`。编号为 `1` 和 `n2` 的方格不是任何蛇或梯子的起点。
+
+**难度**：中等
 **思路**：BFS求最短步数.棋盘编号从1到N²,每步走1~6格,踩到梯子/蛇则直接传送到目标格.用visited避免重访.
 ```python
 def snakesAndLadders(self, board):
@@ -77,7 +130,7 @@ def snakesAndLadders(self, board):
         if r % 2 == 1:  # 奇数行从右往左
             c = n - 1 - c
         return n - 1 - r, c
-    
+
     q = deque([(1, 0)])  # (格子编号,步数)
     visited = set([1])
     while q:
@@ -94,6 +147,19 @@ def snakesAndLadders(self, board):
 ```
 
 ### 4. Minimum Genetic Mutation（⭐⭐） 来源：T150
+**题目**：基因序列可以表示为一条由 8 个字符组成的字符串，其中每个字符都是 `'A'`、`'C'`、`'G'` 和 `'T'` 之一。
+
+假设我们需要调查从基因序列 `start` 变为 `end` 所发生的基因变化。一次基因变化就意味着这个基因序列中的一个字符发生了变化。
+
+- 例如，`"AACCGGTT" --> "AACCGGTA"` 就是一次基因变化。
+
+另有一个基因库 `bank` 记录了所有有效的基因变化，只有基因库中的基因才是有效的基因序列。（变化后的基因必须位于基因库 `bank` 中）
+
+给你两个基因序列 `start` 和 `end` ，以及一个基因库 `bank` ，请你找出并返回能够使 `start` 变化为 `end` 所需的最少变化次数。如果无法完成此基因变化，返回 `-1` 。
+
+注意：起始基因序列 `start` 默认是有效的，但是它并不一定会出现在基因库中。
+
+**难度**：中等
 **思路**：BFS求最短突变路径.每次改变一个碱基,突变结果必须在bank集合中.BFS逐层扩展,首次到达endGene即为最短步数.
 ```python
 def minMutation(self, startGene, endGene, bank):
@@ -119,18 +185,37 @@ def minMutation(self, startGene, endGene, bank):
 ```
 
 ### 5. Word Ladder（⭐⭐⭐） 来源：T150/O
+**题目**：字典 `wordList` 中从单词 `beginWord`* *到 `endWord` 的 **转换序列 **是一个按下述规格形成的序列 `beginWord -> s1 -> s2 -> ... -> sk`：
+
+- 每一对相邻的单词只差一个字母。
+
+-  对于 `1  `si` 都在 `wordList` 中。注意， `beginWord`* *不需要在 `wordList` 中。
+
+- `sk == endWord`
+
+给你两个单词* *`beginWord`* *和 `endWord` 和一个字典 `wordList` ，返回 *从 `beginWord` 到 `endWord` 的 **最短转换序列** 中的 **单词数目*** 。如果不存在这样的转换序列，返回 `0` 。
+
+**示例 1：**
+
+```
+输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+输出：5
+解释：一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog", 返回它的长度 5。
+```
+
+**难度**：困难
 **思路**：双向BFS优化.从beginWord和endWord同时BFS,每次扩展较小的一层.每个单词改变一个字母,邻接词必须在wordList中.
 ```python
 def ladderLength(self, beginWord, endWord, wordList):
     wordSet = set(wordList)
     if endWord not in wordSet:
         return 0
-    
+
     forward = {beginWord}
     backward = {endWord}
     visited = set()
     steps = 1
-    
+
     while forward and backward:
         if len(forward) > len(backward):
             forward, backward = backward, forward
@@ -152,6 +237,54 @@ def ladderLength(self, beginWord, endWord, wordList):
 ```
 
 ### 6. Rotting Oranges（⭐⭐） 来源：L75
+**题目**：在给定的 `m x n` 网格 `grid` 中，每个单元格可以有以下三个值之一：
+
+- 值 `0` 代表空单元格；
+
+- 值 `1` 代表新鲜橘子；
+
+- 值 `2` 代表腐烂的橘子。
+
+每分钟，腐烂的橘子 **周围 4 个方向上相邻** 的新鲜橘子都会腐烂。
+
+返回 *直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 `-1`* 。
+
+**示例 1：**
+
+*****
+
+```
+输入：grid = [[2,1,1],[1,1,0],[0,1,1]]
+输出：4
+```
+
+**示例 2：**
+
+```
+输入：grid = [[2,1,1],[0,1,1],[1,0,1]]
+输出：-1
+解释：左下角的橘子（第 2 行， 第 0 列）永远不会腐烂，因为腐烂只会发生在 4 个方向上。
+```
+
+**示例 3：**
+
+```
+输入：grid = [[0,2]]
+输出：0
+解释：因为 0 分钟时已经没有新鲜橘子了，所以答案就是 0 。
+```
+
+**提示：**
+
+- `m == grid.length`
+
+- `n == grid[i].length`
+
+- `1 <= m, n <= 10`
+
+- `grid[i][j]` 仅为 `0`、`1` 或 `2`
+
+**难度**：中等
 **思路**：多源BFS.将所有初始腐烂橘子入队,记录新鲜橘子数.BFS逐分钟传播腐烂,每层时间+1.若最后仍有新鲜橘子返回-1.
 ```python
 def orangesRotting(self, grid):
@@ -164,7 +297,7 @@ def orangesRotting(self, grid):
                 q.append((i, j))
             elif grid[i][j] == 1:
                 fresh += 1
-    
+
     minutes = 0
     while q and fresh:
         for _ in range(len(q)):

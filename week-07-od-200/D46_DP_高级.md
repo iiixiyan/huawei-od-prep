@@ -4,7 +4,49 @@
 
 ## 1. Edit Distance (L75/T150)
 
-**状态定义**：`dp[i][j]` = word1[:i] → word2[:j] 的最小编辑距离  
+**题目**：给你两个单词 `word1` 和 `word2`， *请返回将 `word1` 转换成 `word2` 所使用的最少操作数*  。
+
+你可以对一个单词进行如下三种操作：
+
+- 插入一个字符
+
+- 删除一个字符
+
+- 替换一个字符
+
+**示例 1：**
+
+```
+输入：word1 = "horse", word2 = "ros"
+输出：3
+解释：
+horse -> rorse (将 'h' 替换为 'r')
+rorse -> rose (删除 'r')
+rose -> ros (删除 'e')
+```
+
+**示例 2：**
+
+```
+输入：word1 = "intention", word2 = "execution"
+输出：5
+解释：
+intention -> inention (删除 't')
+inention -> enention (将 'i' 替换为 'e')
+enention -> exention (将 'n' 替换为 'x')
+exention -> exection (将 'n' 替换为 'c')
+exection -> execution (插入 'u')
+```
+
+**提示：**
+
+- `0 <= word1.length, word2.length <= 500`
+
+- `word1` 和 `word2` 由小写英文字母组成
+
+**难度**：中等
+
+**状态定义**：`dp[i][j]` = word1[:i] → word2[:j] 的最小编辑距离
 **转移**：
 ```
 if word1[i-1] == word2[j-1]: dp[i][j] = dp[i-1][j-1]
@@ -36,11 +78,11 @@ def minDistance(word1: str, word2: str) -> int:
 
 ## 2. Best Time to Buy and Sell Stock with Transaction Fee (L75)
 
-**状态定义**：  
-- `hold` = 手上有股票时的最大利润  
-- `cash` = 手上无股票时的最大利润  
-**转移**：  
-- `cash = max(cash, hold + price - fee)`  
+**状态定义**：
+- `hold` = 手上有股票时的最大利润
+- `cash` = 手上无股票时的最大利润
+**转移**：
+- `cash = max(cash, hold + price - fee)`
 - `hold = max(hold, cash - price)`
 
 ```python
@@ -58,7 +100,7 @@ def maxProfit(prices: list[int], fee: int) -> int:
 
 ## 3. Best Time to Buy and Sell Stock III (T150)
 
-**思路**：限 2 笔交易，四种状态  
+**思路**：限 2 笔交易，四种状态
 - `buy1, sell1, buy2, sell2`
 
 ```python
@@ -79,7 +121,7 @@ def maxProfit(prices: list[int]) -> int:
 
 ## 4. Best Time to Buy and Sell Stock IV (T150)
 
-**思路**：推广到 k 次交易，当 k ≥ n/2 时退化为无限次  
+**思路**：推广到 k 次交易，当 k ≥ n/2 时退化为无限次
 `buy[j]`, `sell[j]` 表示第 j 次交易后的状态
 
 ```python
@@ -104,7 +146,7 @@ def maxProfit(k: int, prices: list[int]) -> int:
 
 ## 5. Maximal Square (T150)
 
-**状态定义**：`dp[i][j]` = 以 (i,j) 为右下角的最大全 1 正方形边长  
+**状态定义**：`dp[i][j]` = 以 (i,j) 为右下角的最大全 1 正方形边长
 **转移**：
 ```
 if matrix[i][j] == '1':
@@ -133,7 +175,32 @@ def maximalSquare(matrix: list[list[str]]) -> int:
 
 ## 6. Longest Palindromic Substring (T150)
 
-**思路**：中心扩展法（比 DP 更优）  
+**题目**：给你一个字符串 `s`，找到 `s` 中最长的 回文 子串。
+
+**示例 1：**
+
+```
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+```
+
+**示例 2：**
+
+```
+输入：s = "cbbd"
+输出："bb"
+```
+
+**提示：**
+
+- `1 <= s.length <= 1000`
+
+- `s` 仅由数字和英文字母组成
+
+**难度**：中等
+
+**思路**：中心扩展法（比 DP 更优）
 DP 版：`dp[i][j]` = s[i:j+1] 是否回文
 
 ```python

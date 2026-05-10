@@ -4,8 +4,8 @@
 
 ## 1. Unique Paths (L75/T150/O)
 
-**状态定义**：`dp[i][j]` = 到达 (i,j) 的路径数  
-**转移**：`dp[i][j] = dp[i-1][j] + dp[i][j-1]`  
+**状态定义**：`dp[i][j]` = 到达 (i,j) 的路径数
+**转移**：`dp[i][j] = dp[i-1][j] + dp[i][j-1]`
 **优化**：一维滚动数组
 
 ```python
@@ -23,7 +23,7 @@ def uniquePaths(m: int, n: int) -> int:
 
 ## 2. Unique Paths II (T150)
 
-**思路**：有障碍物时 `dp[i][j] = 0`  
+**思路**：有障碍物时 `dp[i][j] = 0`
 **转移**：`if obstacleGrid[i][j] == 0: dp[j] += dp[j-1]`
 
 ```python
@@ -45,9 +45,37 @@ def uniquePathsWithObstacles(obstacleGrid: list[list[int]]) -> int:
 ---
 
 ## 3. Minimum Path Sum (T150/O)
+**题目**：给你二叉树的根节点 `root` 和一个表示目标和的整数 `targetSum` 。判断该树中是否存在 **根节点到叶子节点** 的路径，这条路径上所有节点值相加等于目标和 `targetSum` 。如果存在，返回 `true` ；否则，返回 `false` 。
 
-**状态定义**：`dp[i][j]` = 到 (i,j) 的最小路径和  
-**转移**：`dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])`  
+**叶子节点** 是指没有子节点的节点。
+
+**示例 1：**
+
+*
+
+```
+输入：root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+输出：true
+解释：等于目标和的根节点到叶节点路径如上图所示。
+```
+
+**示例 2：**
+
+*
+
+```
+输入：root = [1,2,3], targetSum = 5
+输出：false
+解释：树中存在两条根节点到叶子节点的路径：
+(1 --> 2): 和为 3
+(1 --> 3): 和为 4
+不存在 sum = 5 的根节点到叶子节点的路径。
+```
+
+**难度**：简单
+
+**状态定义**：`dp[i][j]` = 到 (i,j) 的最小路径和
+**转移**：`dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])`
 **原地**：可修改原数组节省空间
 
 ```python
@@ -89,7 +117,7 @@ def minimumTotal(triangle: list[list[int]]) -> int:
 
 ## 5. Longest Common Subsequence (L75/O)
 
-**状态定义**：`dp[i][j]` = text1[:i] 和 text2[:j] 的 LCS 长度  
+**状态定义**：`dp[i][j]` = text1[:i] 和 text2[:j] 的 LCS 长度
 **转移**：
 ```
 if text1[i-1] == text2[j-1]: dp[i][j] = dp[i-1][j-1] + 1
@@ -115,7 +143,7 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
 
 ## 6. Interleaving String (T150/O)
 
-**状态定义**：`dp[i][j]` = s1[:i] 和 s2[:j] 能否交错成 s3[:i+j]  
+**状态定义**：`dp[i][j]` = s1[:i] 和 s2[:j] 能否交错成 s3[:i+j]
 **转移**：
 ```
 dp[i][j] = (dp[i-1][j] and s1[i-1]==s3[i+j-1]) or
