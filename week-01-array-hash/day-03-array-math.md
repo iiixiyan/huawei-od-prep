@@ -29,11 +29,10 @@
 ```
 **提示：**
 
-- `2 5`
+- `2 <= nums.length <= 10^5`
+- `-30 <= nums[i] <= 30`
 
-- `-30
-
-**进阶：**你可以在 `O(1)` 的额外空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组 **不被视为 **额外空间。）
+**进阶：**你可以在 `O(1)` 的额外空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组 **不被视为**额外空间。）
 **思路**：前缀积 × 后缀积。第一遍从左到右，`answer[i]` 存 `nums[i]` 左边所有数的乘积。第二遍从右到左，用一个变量 `suffix` 记录右边所有数的乘积，乘到 `answer[i]` 上。空间 O(1) 除输出数组外。
 **代码**：
 ```python
@@ -58,9 +57,9 @@ def productExceptSelf(nums: list[int]) -> list[int]:
 ### 2. 加油站（⭐⭐⭐）
 **来源**：[LeetCode](https://leetcode.cn/problems/gas-station/)
 **难度**：中等
-**题目**：在一条环路上有 `n` 个加油站，其中第 `i` 个加油站有汽油 `gas[i]`* *升。
+**题目**：在一条环路上有 `n` 个加油站，其中第 `i` 个加油站有汽油 `gas[i]` 升。
 
-你有一辆油箱容量无限的的汽车，从第* *`i`  *个加油站开往第* *`i+1`* *个加油站需要消耗汽油 `cost[i]`* *升。你从其中的一个加油站出发，开始时油箱为空。
+你有一辆油箱容量无限的的汽车，从第 `i` 个加油站开往第 `i+1` 个加油站需要消耗汽油 `cost[i]` 升。你从其中的一个加油站出发，开始时油箱为空。
 
 给定两个整数数组 `gas` 和 `cost` ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 `-1` 。如果存在解，则 **保证**它是**唯一** 的。
 
@@ -92,10 +91,9 @@ def productExceptSelf(nums: list[int]) -> list[int]:
 **提示:**
 
 - `n == gas.length == cost.length`
-
-- `1 5`
-
-- `0 4`
+- `1 <= n <= 10^5`
+- `0 <= gas[i] <= 10^4`
+- `0 <= cost[i] <= 10^4`
 
 - 输入保证答案唯一。
 **思路**：**贪心**。从 `start` 出发，`total_gas` 记录总剩余油量，`cur_gas` 记录从当前起点出发的累计剩余。如果 `cur_gas < 0`，说明从 `start` 到当前位置之间任何点都无法到达终点，将起点设为 `i+1` 并重置 `cur_gas`。如果 `total_gas < 0` 则无解。
@@ -141,10 +139,8 @@ def canCompleteCircuit(gas: list[int], cost: list[int]) -> int:
 **提示：**
 
 - `n == ratings.length`
-
-- `1 4`
-
-- `0 4`
+- `1 <= n <= 2 * 10^4`
+- `0 <= ratings[i] <= 2 * 10^4`
 **思路**：**左右两次遍历**。先从左到右：如果 `ratings[i] > ratings[i-1]`，则 `candies[i] = candies[i-1] + 1`，否则为 1。再从右到左：如果 `ratings[i] > ratings[i+1]`，则 `candies[i] = max(candies[i], candies[i+1] + 1)`。两次遍历结果取最大值。
 **代码**：
 ```python
@@ -171,7 +167,6 @@ def candy(ratings: list[int]) -> int:
 
 **示例 1：**
 ```
-*
 输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
 输出：6
 解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
@@ -184,10 +179,8 @@ def candy(ratings: list[int]) -> int:
 **提示：**
 
 - `n == height.length`
-
-- `1 4`
-
-- `0 5`
+- `1 <= n <= 2 * 10^4`
+- `0 <= height[i] <= 10^5`
 **思路**：**双指针**。左右指针向中间移动，维护 `left_max` 和 `right_max`。当 `height[left] < height[right]` 时，左边是短板，当前位置能接的水 = `left_max - height[left]`（如果左指针处高度小于左最大高度）。对称处理右边。不需要额外数组。
 **代码**：
 ```python
@@ -231,13 +224,10 @@ def trap(height: list[int]) -> int:
 ```
 **提示：**
 
-- `1 4`
-
+- `1 <= flowerbed.length <= 2 * 10^4`
 - `flowerbed[i]` 为 `0` 或 `1`
-
 - `flowerbed` 中不存在相邻的两朵花
-
-- `0
+- `0 <= n <= flowerbed.length`
 **思路**：**贪心**。遍历花坛，如果当前位置能种花（`flowerbed[i] == 0` 且左右邻居都没有花），就种下并减少待种数量。注意边界处理：首尾只需要检查一侧。
 **代码**：
 ```python
@@ -260,7 +250,7 @@ def canPlaceFlowers(flowerbed: list[int], n: int) -> bool:
 **难度**：简单
 **题目**：有 `n` 个有糖果的孩子。给你一个数组 `candies`，其中 `candies[i]` 代表第 `i` 个孩子拥有的糖果数目，和一个整数 `extraCandies` 表示你所有的额外糖果的数量。
 
-返回一个长度为 `n` 的布尔数组 `result`，如果把所有的 `extraCandies` 给第 `i` 个孩子之后，他会拥有所有孩子中 **最多 **的糖果，那么 `result[i]` 为 `true`，否则为 `false`。
+返回一个长度为 `n` 的布尔数组 `result`，如果把所有的 `extraCandies` 给第 `i` 个孩子之后，他会拥有所有孩子中 **最多**的糖果，那么 `result[i]` 为 `true`，否则为 `false`。
 
 注意，允许有多个孩子同时拥有 **最多** 的糖果数目。
 
@@ -289,8 +279,9 @@ def canPlaceFlowers(flowerbed: list[int], n: int) -> bool:
 **提示：**
 
 - `n == candies.length`
-
-- `2
+- `2 <= n <= 100`
+- `1 <= candies[i] <= 100`
+- `1 <= extraCandies <= 50`
 **思路**：先找到当前最大值，然后对每个孩子判断 `candies[i] + extraCandies >= max_candies`。
 **代码**：
 ```python
