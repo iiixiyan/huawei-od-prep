@@ -21,7 +21,6 @@ class TrieNode:
 **难度**：中等
 **题目**：**Trie**（发音类似 "try"）或者说 **前缀树** 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
 
-
 请你实现 Trie 类：
 
 - `Trie()` 初始化前缀树对象。
@@ -32,16 +31,13 @@ class TrieNode:
 
 - `boolean startsWith(String prefix)` 如果之前已经插入的字符串 `word` 的前缀之一为 `prefix` ，返回 `true` ；否则，返回 `false` 。
 
-
 **示例：**
-
-
+```
 输入
 ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
 [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
 输出
 [null, null, true, false, true, null, true]
-
 解释
 Trie trie = new Trie();
 trie.insert("apple");
@@ -50,8 +46,7 @@ trie.search("app");     // 返回 False
 trie.startsWith("app"); // 返回 True
 trie.insert("app");
 trie.search("app");     // 返回 True
-
-
+```
 **提示：**
 
 - `1 4` 次
@@ -96,16 +91,12 @@ class Trie:
 **难度**：中等
 **题目**：给你一个产品数组 `products` 和一个字符串 `searchWord` ，`products`  数组中每个产品都是一个字符串。
 
-
 请你设计一个推荐系统，在依次输入单词 `searchWord` 的每一个字母后，推荐 `products` 数组中前缀与 `searchWord` 相同的最多三个产品。如果前缀相同的可推荐产品超过三个，请按字典序返回最小的三个。
-
 
 请你以二维列表的形式，返回在输入 `searchWord` 每个字母后相应的推荐产品的列表。
 
-
 **示例 1：**
-
-
+```
 输入：products = ["mobile","mouse","moneypot","monitor","mousepad"], searchWord = "mouse"
 输出：[
 ["mobile","moneypot","monitor"],
@@ -117,26 +108,22 @@ class Trie:
 解释：按字典序排序后的产品列表是 ["mobile","moneypot","monitor","mouse","mousepad"]
 输入 m 和 mo，由于所有产品的前缀都相同，所以系统返回字典序最小的三个产品 ["mobile","moneypot","monitor"]
 输入 mou， mous 和 mouse 后系统都返回 ["mouse","mousepad"]
-
+```
 **示例 2：**
-
-
+```
 输入：products = ["havana"], searchWord = "havana"
 输出：[["havana"],["havana"],["havana"],["havana"],["havana"],["havana"]]
-
+```
 **示例 3：**
-
-
+```
 输入：products = ["bags","baggage","banner","box","cloths"], searchWord = "bags"
 输出：[["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bags"],["bags"]]
-
+```
 **示例 4：**
-
-
+```
 输入：products = ["havana"], searchWord = "tatiana"
 输出：[[],[],[],[],[],[],[]]
-
-
+```
 **提示：**
 
 - `1
@@ -175,7 +162,6 @@ def suggestedProducts(self, products, searchWord):
 **难度**：中等
 **题目**：请你设计一个数据结构，支持 添加新单词 和 查找字符串是否与任何先前添加的字符串匹配 。
 
-
 实现词典类 `WordDictionary` ：
 
 - `WordDictionary()` 初始化词典对象
@@ -184,16 +170,13 @@ def suggestedProducts(self, products, searchWord):
 
 - `bool search(word)` 如果数据结构中存在字符串与 `word` 匹配，则返回 `true` ；否则，返回  `false` 。`word` 中可能包含一些 `'.'` ，每个 `.` 都可以表示任何一个字母。
 
-
 **示例：**
-
-
+```
 输入：
 ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
 [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
 输出：
 [null,null,null,null,false,true,true,true]
-
 解释：
 WordDictionary wordDictionary = new WordDictionary();
 wordDictionary.addWord("bad");
@@ -203,12 +186,10 @@ wordDictionary.search("pad"); // 返回 False
 wordDictionary.search("bad"); // 返回 True
 wordDictionary.search(".ad"); // 返回 True
 wordDictionary.search("b.."); // 返回 True
-
-
+```
 **提示：**
 
-- `1 4` 次 `addWord` 和 `search`
-**思路**：支持通配符'.'(匹配任意字符)的Trie.search时遇到'.'需DFS遍历所有子节点.
+- `1 4` 次 `addWord` 和 `search` *思路**：支持通配符'.'(匹配任意字符)的Trie.search时遇到'.'需DFS遍历所有子节点.
 **代码**：
 ```python
 class WordDictionary:
@@ -244,29 +225,26 @@ class WordDictionary:
 **难度**：中等
 **题目**：给定一个 `m x n` 二维字符网格 `board` 和一个字符串单词 `word` 。如果 `word` 存在于网格中，返回 `true` ；否则，返回 `false` 。
 
-
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
 
-
 **示例 1：**
-
+```
 *
 输入：board = [['A','B','C','E'],['S','F','C','S'],['A','D','E','E']], word = "ABCCED"
 输出：true
-
+```
 **示例 2：**
-
+```
 *
 输入：board = [['A','B','C','E'],['S','F','C','S'],['A','D','E','E']], word = "SEE"
 输出：true
-
+```
 **示例 3：**
-
+```
 *
 输入：board = [['A','B','C','E'],['S','F','C','S'],['A','D','E','E']], word = "ABCB"
 输出：false
-
-
+```
 **提示：**
 
 - `m == board.length`
@@ -274,7 +252,6 @@ class WordDictionary:
 - `n = board[i].length`
 
 - `1
-
 
 **进阶：**你可以使用搜索剪枝的技术来优化解决方案，使其在 `board` 更大的情况下可以更快解决问题？
 **思路**：Trie + 回溯.先将words构建Trie,然后在board上DFS搜索,同时沿Trie节点移动,匹配到完整单词则加入结果.用'#'标记已访问单元格.
@@ -315,26 +292,20 @@ def findWords(self, board, words):
 **难度**：中等
 **题目**：在英语中，我们有一个叫做 **词根**(root) 的概念，可以词根 **后面 **添加其他一些词组成另一个较长的单词——我们称这个词为 **衍生词** (**derivative**)。例如，词根 `help`，跟随着 **继承**词 `"ful"`，可以形成新的单词 `"helpful"`。
 
-
 现在，给定一个由许多 **词根 **组成的词典 `dictionary` 和一个用空格分隔单词形成的句子 `sentence`。你需要将句子中的所有 **衍生词 **用 **词根 **替换掉。如果 **衍生词 **有许多可以形成它的 **词根**，则用 **最短 **的 **词根** 替换它。
-
 
 你需要输出替换之后的句子。
 
-
 **示例 1：**
-
-
+```
 输入：dictionary = ["cat","bat","rat"], sentence = "the cattle was rattled by the battery"
 输出："the cat was rat by the bat"
-
+```
 **示例 2：**
-
-
+```
 输入：dictionary = ["a","b","c"], sentence = "aadsfasf absbs bbab cadsfafs"
 输出："a a b c"
-
-
+```
 **提示：**
 
 - `1 6`
@@ -378,26 +349,21 @@ def replaceWords(self, dictionary, sentence):
 **难度**：中等
 **题目**：设计一个使用单词列表进行初始化的数据结构，单词列表中的单词 **互不相同** 。 如果给出一个单词，请判定能否只将这个单词中**一个**字母换成另一个字母，使得所形成的新单词存在于你构建的字典中。
 
-
 实现 `MagicDictionary` 类：
 
 - `MagicDictionary()` 初始化对象
 
 - `void buildDict(String[] dictionary)` 使用字符串数组 `dictionary` 设定该数据结构，`dictionary` 中的字符串互不相同
 
-- `bool search(String searchWord)` 给定一个字符串 `searchWord` ，判定能否只将字符串中** 一个 **字母换成另一个字母，使得所形成的新字符串能够与字典中的任一字符串匹配。如果可以，返回 `true` ；否则，返回 `false` 。
-
- 
+- `bool search(String searchWord)` 给定一个字符串 `searchWord` ，判定能否只将字符串中**一个**字母换成另一个字母，使得所形成的新字符串能够与字典中的任一字符串匹配。如果可以，返回 `true` ；否则，返回 `false` 。
 
 **示例：**
-
-
+```
 输入
 ["MagicDictionary", "buildDict", "search", "search", "search", "search"]
 [[], [["hello", "leetcode"]], ["hello"], ["hhllo"], ["hell"], ["leetcoded"]]
 输出
 [null, null, false, true, false, false]
-
 解释
 MagicDictionary magicDictionary = new MagicDictionary();
 magicDictionary.buildDict(["hello", "leetcode"]);
@@ -405,10 +371,7 @@ magicDictionary.search("hello"); // 返回 False
 magicDictionary.search("hhllo"); // 将第二个 'h' 替换为 'e' 可以匹配 "hello" ，所以返回 True
 magicDictionary.search("hell"); // 返回 False
 magicDictionary.search("leetcoded"); // 返回 False
-
- 
-
-
+```
 **提示：**
 
 - `1

@@ -20,33 +20,26 @@
 **难度**：简单
 **题目**：给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
 
-
 **请注意** ，必须在不复制数组的情况下原地对数组进行操作。
 
-
 **示例 1:**
-
-
+```
 输入: nums = [0,1,0,3,12]
 输出: [1,3,12,0,0]
-
+```
 **示例 2:**
-
-
+```
 输入: nums = [0]
 输出: [0]
-
-
+```
 **提示**:
 
 - `1 4`
 
 - `-231 31 - 1`
 
-
 **进阶：**你能尽量减少完成的操作次数吗？
 **思路**：快慢指针，类似移除元素。slow 指向下一个非零元素应该放置的位置，fast 遍历数组。遇到非零元素就交换到 slow 位置。
-**代码**：
 **代码**：
 ```python
 def moveZeroes(nums: list[int]) -> None:
@@ -59,7 +52,6 @@ def moveZeroes(nums: list[int]) -> None:
 ### 2. 有效的数独
 **来源**：[LeetCode](https://leetcode.cn/problems/valid-sudoku/)
 **思路**：用三个集合数组分别记录每行、每列、每个 3×3 子数独中出现的数字。遍历时检查当前数字是否已在对应行/列/子数独中出现过。子数独索引 = (row // 3) * 3 + (col // 3)。
-**代码**：
 **代码**：
 ```python
 def isValidSudoku(board: list[list[str]]) -> bool:
@@ -84,33 +76,24 @@ def isValidSudoku(board: list[list[str]]) -> bool:
 **难度**：中等
 **题目**：给定一个长度为 `n` 的整数数组 `height` 。有 `n` 条垂线，第 `i` 条线的两个端点是 `(i, 0)` 和 `(i, height[i])` 。
 
-
 找出其中的两条线，使得它们与 `x` 轴共同构成的容器可以容纳最多的水。
-
 
 返回容器可以储存的最大水量。
 
-
 **说明：**你不能倾斜容器。
 
-
 **示例 1：**
-
-
+```
 *
-
-
 输入：[1,8,6,2,5,4,8,3,7]
 输出：49
 解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。
-
+```
 **示例 2：**
-
-
+```
 输入：height = [1,1]
 输出：1
-
-
+```
 **提示：**
 
 - `n == height.length`
@@ -119,7 +102,6 @@ def isValidSudoku(board: list[list[str]]) -> bool:
 
 - `0 4`
 **思路**：双指针从两端向中间移动，计算当前面积 = 较矮高度 × 宽度。每次移动较矮的那一侧指针，因为宽度减小，只有高度可能变大才有可能得到更大面积。
-**代码**：
 **代码**：
 ```python
 def maxArea(height: list[int]) -> int:
@@ -138,7 +120,6 @@ def maxArea(height: list[int]) -> int:
 ### 4. O(1) 时间插入、删除和获取随机元素
 **来源**：[1](https://leetcode.cn/problems/insert-delete-getrandom-o1/)
 **思路**：组合使用哈希表（值→索引）和动态数组。插入时在数组末尾追加并记录索引；删除时将待删元素与末尾元素交换再删除（O(1)），更新哈希表；随机取用 random.choice。
-**代码**：
 **代码**：
 ```python
 import random
@@ -176,7 +157,6 @@ class RandomizedSet:
 **来源**：[LeetCode](https://leetcode.cn/problems/first-missing-positive/)
 **思路**：**原地哈希**。将数组视为哈希表：把数字 x 放到下标 x-1 的位置。遍历数组，如果 `1 <= nums[i] <= n` 且 `nums[i] != nums[nums[i]-1]`，则交换。最后遍历，第一个 `nums[i] != i+1` 的位置即为答案。
 **代码**：
-**代码**：
 ```python
 def firstMissingPositive(nums: list[int]) -> int:
     n = len(nums)
@@ -195,7 +175,6 @@ def firstMissingPositive(nums: list[int]) -> int:
 ### 6. 生命游戏
 **来源**：[LeetCode](https://leetcode.cn/problems/game-of-life/)
 **思路**：**原地标记法**。用特殊状态表示变化：2 表示从活→死，-1 表示从死→活。统计每个细胞周围 8 个方向的活细胞数，根据规则更新。第二次遍历将特殊状态转换回 0/1。
-**代码**：
 **代码**：
 ```python
 def gameOfLife(board: list[list[int]]) -> None:
