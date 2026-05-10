@@ -3,8 +3,10 @@
 ---
 
 ## 1. Edit Distance (L75/T150)
-
+**来源**：[](https://leetcode.cn/problems/edit-distance/)
+**难度**：中等
 **题目**：给你两个单词 `word1` 和 `word2`， *请返回将 `word1` 转换成 `word2` 所使用的最少操作数*  。
+
 
 你可以对一个单词进行如下三种操作：
 
@@ -14,20 +16,20 @@
 
 - 替换一个字符
 
+
 **示例 1：**
 
-```
+
 输入：word1 = "horse", word2 = "ros"
 输出：3
 解释：
 horse -> rorse (将 'h' 替换为 'r')
 rorse -> rose (删除 'r')
 rose -> ros (删除 'e')
-```
 
 **示例 2：**
 
-```
+
 输入：word1 = "intention", word2 = "execution"
 输出：5
 解释：
@@ -36,25 +38,14 @@ inention -> enention (将 'i' 替换为 'e')
 enention -> exention (将 'n' 替换为 'x')
 exention -> exection (将 'n' 替换为 'c')
 exection -> execution (插入 'u')
-```
+
 
 **提示：**
 
-- `0 <= word1.length, word2.length <= 500`
-
-- `word1` 和 `word2` 由小写英文字母组成
-
-**难度**：中等
-
-**状态定义**：`dp[i][j]` = word1[:i] → word2[:j] 的最小编辑距离
+- `0
+**思路**：**状态定义**：`dp[i][j]` = word1[:i] → word2[:j] 的最小编辑距离
 **转移**：
-```
-if word1[i-1] == word2[j-1]: dp[i][j] = dp[i-1][j-1]
-else: dp[i][j] = 1 + min(dp[i-1][j],    # 删除
-                          dp[i][j-1],    # 插入
-                          dp[i-1][j-1])  # 替换
-```
-
+**代码**：
 ```python
 def minDistance(word1: str, word2: str) -> int:
     m, n = len(word1), len(word2)
@@ -73,10 +64,44 @@ def minDistance(word1: str, word2: str) -> int:
 
 # 时间 O(m*n), 空间 O(m*n) 可压缩到 O(n)
 ```
-
----
-
 ## 2. Best Time to Buy and Sell Stock with Transaction Fee (L75)
+**来源**：[LeetCode](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)
+**难度**：简单
+**题目**：给定一个数组 `prices` ，它的第 `i` 个元素 `prices[i]` 表示一支给定股票第 `i` 天的价格。
+
+
+你只能选择 **某一天** 买入这只股票，并选择在 **未来的某一个不同的日子** 卖出该股票。设计一个算法来计算你所能获取的最大利润。
+
+
+返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 `0` 。
+
+
+ 
+
+
+**示例 1：**
+
+
+输入：[7,1,5,3,6,4]
+输出：5
+解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+
+**示例 2：**
+
+
+输入：prices = [7,6,4,3,1]
+输出：0
+解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+
+ 
+
+
+**提示：**
+
+- `1 5`
+
+- `0 4`
 
 **状态定义**：
 - `hold` = 手上有股票时的最大利润
@@ -99,6 +124,43 @@ def maxProfit(prices: list[int], fee: int) -> int:
 ---
 
 ## 3. Best Time to Buy and Sell Stock III (T150)
+**来源**：[LeetCode](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)
+**难度**：简单
+**题目**：给定一个数组 `prices` ，它的第 `i` 个元素 `prices[i]` 表示一支给定股票第 `i` 天的价格。
+
+
+你只能选择 **某一天** 买入这只股票，并选择在 **未来的某一个不同的日子** 卖出该股票。设计一个算法来计算你所能获取的最大利润。
+
+
+返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 `0` 。
+
+
+ 
+
+
+**示例 1：**
+
+
+输入：[7,1,5,3,6,4]
+输出：5
+解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+
+**示例 2：**
+
+
+输入：prices = [7,6,4,3,1]
+输出：0
+解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+
+ 
+
+
+**提示：**
+
+- `1 5`
+
+- `0 4`
 
 **思路**：限 2 笔交易，四种状态
 - `buy1, sell1, buy2, sell2`
@@ -120,6 +182,43 @@ def maxProfit(prices: list[int]) -> int:
 ---
 
 ## 4. Best Time to Buy and Sell Stock IV (T150)
+**来源**：[LeetCode](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)
+**难度**：简单
+**题目**：给定一个数组 `prices` ，它的第 `i` 个元素 `prices[i]` 表示一支给定股票第 `i` 天的价格。
+
+
+你只能选择 **某一天** 买入这只股票，并选择在 **未来的某一个不同的日子** 卖出该股票。设计一个算法来计算你所能获取的最大利润。
+
+
+返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 `0` 。
+
+
+ 
+
+
+**示例 1：**
+
+
+输入：[7,1,5,3,6,4]
+输出：5
+解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
+
+**示例 2：**
+
+
+输入：prices = [7,6,4,3,1]
+输出：0
+解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
+
+ 
+
+
+**提示：**
+
+- `1 5`
+
+- `0 4`
 
 **思路**：推广到 k 次交易，当 k ≥ n/2 时退化为无限次
 `buy[j]`, `sell[j]` 表示第 j 次交易后的状态
@@ -174,35 +273,30 @@ def maximalSquare(matrix: list[list[str]]) -> int:
 ---
 
 ## 6. Longest Palindromic Substring (T150)
-
+**来源**：[T150](https://leetcode.cn/problems/longest-palindromic-substring/)
+**难度**：中等
 **题目**：给你一个字符串 `s`，找到 `s` 中最长的 回文 子串。
+
 
 **示例 1：**
 
-```
+
 输入：s = "babad"
 输出："bab"
 解释："aba" 同样是符合题意的答案。
-```
 
 **示例 2：**
 
-```
+
 输入：s = "cbbd"
 输出："bb"
-```
+
 
 **提示：**
 
-- `1 <= s.length <= 1000`
-
-- `s` 仅由数字和英文字母组成
-
-**难度**：中等
-
-**思路**：中心扩展法（比 DP 更优）
-DP 版：`dp[i][j]` = s[i:j+1] 是否回文
-
+- `1
+**思路**：中心扩展法（比 DP 更优） DP 版：`dp[i][j]` = s[i:j+1] 是否回文
+**代码**：
 ```python
 def longestPalindrome(s: str) -> str:
     n = len(s)

@@ -49,6 +49,39 @@ def coinChange(coins: list[int], amount: int) -> int:
 ---
 
 ## 3. Longest Increasing Subsequence (T150)
+**来源**：[LeetCode](https://leetcode.cn/problems/longest-increasing-subsequence/)
+**难度**：中等
+**题目**：给你一个整数数组 `nums` ，找到其中最长严格递增子序列的长度。
+
+
+**子序列 **是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，`[3,6,2,7]` 是数组 `[0,3,1,6,2,2,7]` 的子序列。
+
+**示例 1：**
+
+
+输入：nums = [10,9,2,5,3,7,101,18]
+输出：4
+解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。
+
+**示例 2：**
+
+
+输入：nums = [0,1,0,3,2,3]
+输出：4
+
+**示例 3：**
+
+
+输入：nums = [7,7,7,7,7,7,7]
+输出：1
+
+**提示：**
+
+- `1 4 4`
+
+**进阶：**
+
+- 你能将算法的时间复杂度降低到 `O(n log(n))` 吗?
 
 **状态定义**：`dp[i]` = 以 nums[i] 结尾的 LIS 长度
 **转移**：`dp[i] = 1 + max(dp[j] for j < i if nums[j] < nums[i])`
@@ -71,36 +104,36 @@ def lengthOfLIS(nums: list[int]) -> int:
 ---
 
 ## 4. Partition Equal Subset Sum (O)
+**来源**：[O](https://leetcode.cn/problems/partition-equal-subset-sum/)
+**难度**：中等
 **题目**：给你一个 **只包含正整数 **的 **非空 **数组 `nums` 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
+
+ 
+
 
 **示例 1：**
 
-```
+
 输入：nums = [1,5,11,5]
 输出：true
 解释：数组可以分割成 [1, 5, 5] 和 [11] 。
-```
 
 **示例 2：**
 
-```
+
 输入：nums = [1,2,3,5]
 输出：false
 解释：数组不能分割成两个元素和相等的子集。
-```
+
+ 
+
 
 **提示：**
 
-- `1 <= nums.length <= 200`
-
-- `1 <= nums[i] <= 100`
-
-**难度**：中等
-
+- `1
 **思路**：转化 → 能否选出若干元素凑成总和的一半（0-1 背包）
-**状态**：`dp[s]` = 能否凑出和为 s 的子集
-**转移**：`dp[s] = dp[s] or dp[s - num]`
-
+**代码**：
 ```python
 def canPartition(nums: list[int]) -> bool:
     total = sum(nums)
@@ -117,11 +150,11 @@ def canPartition(nums: list[int]) -> bool:
 
 # 时间 O(n * target), 空间 O(target)
 ```
-
----
-
 ## 5. Target Sum (O)
+**来源**：[O](https://leetcode.cn/problems/target-sum/)
+**难度**：中等
 **题目**：给你一个非负整数数组 `nums` 和一个整数 `target` 。
+
 
 向数组中的每个整数前添加 `'+'` 或 `'-'` ，然后串联起所有整数，可以构造一个 **表达式** ：
 
@@ -129,9 +162,10 @@ def canPartition(nums: list[int]) -> bool:
 
 返回可以通过上述方法构造的、运算结果等于 `target` 的不同 **表达式** 的数目。
 
+
 **示例 1：**
 
-```
+
 输入：nums = [1,1,1,1,1], target = 3
 输出：5
 解释：一共有 5 种方法让最终目标和为 3 。
@@ -140,15 +174,19 @@ def canPartition(nums: list[int]) -> bool:
 +1 + 1 - 1 + 1 + 1 = 3
 +1 + 1 + 1 - 1 + 1 = 3
 +1 + 1 + 1 + 1 - 1 = 3
-```
 
-**难度**：中等
+**示例 2：**
 
-**思路**：转化成 0-1 背包
-`sum(正数) - sum(负数) = target`
-`sum(正数) = (total + target) // 2`
-找能凑成 `(total + target) // 2` 的方法数
 
+输入：nums = [1], target = 1
+输出：1
+
+
+**提示：**
+
+- `1
+**思路**：转化成 0-1 背包 `sum(正数) - sum(负数) = target` `sum(正数) = (total + target) // 2` 找能凑成 `(total + target) // 2` 的方法数
+**代码**：
 ```python
 def findTargetSumWays(nums: list[int], target: int) -> int:
     total = sum(nums)
@@ -164,56 +202,46 @@ def findTargetSumWays(nums: list[int], target: int) -> int:
 
 # 时间 O(n * s), 空间 O(s)
 ```
-
----
-
 ## 6. Combination Sum IV (O)
-**题目**：给你一个由 **不同** 整数组成的数组 `nums` ，和一个目标整数 `target` 。请你从 `nums` 中找出并返回总和为 `target` 的元素组合的个数。
+**来源**：[O](https://leetcode.cn/problems/combination-sum/)
+**难度**：中等
+**题目**：给你一个 **无重复元素** 的整数数组 `candidates` 和一个目标整数 `target` ，找出 `candidates` 中可以使数字和为目标数 `target` 的 所有* ***不同组合** ，并以列表形式返回。你可以按 **任意顺序** 返回这些组合。
 
-题目数据保证答案符合 32 位整数范围。
+
+`candidates` 中的 **同一个** 数字可以 **无限制重复被选取** 。如果至少一个数字的被选数量不同，则两种组合是不同的。
+
+
+对于给定的输入，保证和为 `target` 的不同组合数少于 `150` 个。
+
 
 **示例 1：**
 
-```
-输入：nums = [1,2,3], target = 4
-输出：7
+
+输入：candidates = [2,3,6,7], target = 7
+输出：[[2,2,3],[7]]
 解释：
-所有可能的组合为：
-(1, 1, 1, 1)
-(1, 1, 2)
-(1, 2, 1)
-(1, 3)
-(2, 1, 1)
-(2, 2)
-(3, 1)
-请注意，顺序不同的序列被视作不同的组合。
-```
+2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
+7 也是一个候选， 7 = 7 。
+仅有这两种组合。
 
 **示例 2：**
 
-```
-输入：nums = [9], target = 3
-输出：0
-```
+
+输入: candidates = [2,3,5], target = 8
+输出: [[2,2,2,2],[2,3,3],[3,5]]
+
+**示例 3：**
+
+
+输入: candidates = [2], target = 1
+输出: []
+
 
 **提示：**
 
-- `1 <= nums.length <= 200`
-
-- `1 <= nums[i] <= 1000`
-
-- `nums` 中的所有元素 **互不相同**
-
-- `1 <= target <= 1000`
-
-**进阶：**如果给定的数组中含有负数会发生什么？问题会产生何种变化？如果允许负数出现，需要向题目中添加哪些限制条件？
-
-**难度**：中等
-
+- `1
 **思路**：完全背包求排列数
-**状态**：`dp[i]` = 凑成 i 的组合数（顺序不同视为不同）
-**转移**：外循环金额，内循环物品
-
+**代码**：
 ```python
 def combinationSum4(nums: list[int], target: int) -> int:
     dp = [0] * (target + 1)
