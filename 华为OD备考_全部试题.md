@@ -1,84 +1,80 @@
+# 机考试题
 
-### .git
+## 📑 目录
 
 ### 第1周·数组与哈希表
-- [day-01-array-basics](#day-01-array-basics)
-- [day-02-array-advanced](#day-02-array-advanced)
-- [day-03-array-math](#day-03-array-math)
-- [day-04-hash-set](#day-04-hash-set)
-- [day-05-hash-map](#day-05-hash-map)
-- [day-06-prefix-sum-intervals](#day-06-prefix-sum-intervals)
-- [day-07-week-review](#day-07-week-review)
+- [Day 01：数组基础操作](#day-01-数组基础操作)
+- [Day 02：数组进阶操作](#day-02-数组进阶操作)
+- [Day 03：数组 + 数学](#day-03-数组-数学)
+- [Day 04：哈希集合](#day-04-哈希集合)
+- [Day 05：哈希映射](#day-05-哈希映射)
+- [Day 06：前缀和 + 区间](#day-06-前缀和-区间)
+- [Day 07：周复习](#day-07-周复习)
 
 ### 第2周·字符串与双指针
-- [day-08-strings-basics](#day-08-strings-basics)
-- [day-09-two-pointers](#day-09-two-pointers)
-- [day-10-palindrome-sliding-window](#day-10-palindrome-sliding-window)
-- [day-11-sliding-window-advanced](#day-11-sliding-window-advanced)
-- [day-12-string-comprehensive](#day-12-string-comprehensive)
-- [day-13-string-mixed](#day-13-string-mixed)
-- [day-14-weekly-review](#day-14-weekly-review)
+- [Day 08：字符串基础](#day-08-字符串基础)
+- [Day 09：双指针](#day-09-双指针)
+- [Day 10：回文 / 滑动窗口](#day-10-回文-滑动窗口)
+- [Day 11：滑动窗口进阶](#day-11-滑动窗口进阶)
+- [Day 12：字符串综合](#day-12-字符串综合)
+- [Day 13：字符串混合](#day-13-字符串混合)
+- [Day 14：周复习 — 字符串 & 双指针综合](#day-14-周复习-字符串-双指针综合)
 
 ### 第3周·链表与栈队列
-- [D15-栈基础](#d15-栈基础)
-- [D16-栈进阶](#d16-栈进阶)
-- [D17-队列+设计](#d17-队列+设计)
-- [D18-链表基础](#d18-链表基础)
-- [D19-链表进阶](#d19-链表进阶)
-- [day-20-linked-list-advanced-2](#day-20-linked-list-advanced-2)
-- [day-21-weekly-review](#day-21-weekly-review)
+- [Day 15：栈基础 — 6题](#day-15-栈基础-6题)
+- [Day 16：栈进阶 — 6题](#day-16-栈进阶-6题)
+- [Day 17：队列+设计 — 6题](#day-17-队列-设计-6题)
+- [Day 18：链表基础 — 6题](#day-18-链表基础-6题)
+- [Day 19：链表进阶 — 6题](#day-19-链表进阶-6题)
+- [Day 20：链表高阶 — 6题](#day-20-链表高阶-6题)
+- [Day 21：周复习 — 栈·队列·链表](#day-21-周复习-栈-队列-链表)
 
 ### 第4周·树与图(复习)
-- [D22-二叉树遍历](#d22-二叉树遍历)
-- [D23-树的构建](#d23-树的构建)
-- [D24-树的路径](#d24-树的路径)
-- [D25-BFS-层序遍历](#d25-bfs-层序遍历)
-- [D26-二叉搜索树BST](#d26-二叉搜索树bst)
-- [D27-树的综合](#d27-树的综合)
-- [D28-周复习](#d28-周复习)
+- [Day 22：二叉树遍历](#day-22-二叉树遍历)
+- [Day 23：树的构建](#day-23-树的构建)
+- [Day 24：树的路径](#day-24-树的路径)
+- [Day 25：BFS + 层序遍历](#day-25-bfs-层序遍历)
+- [Day 26：二叉搜索树（BST）](#day-26-二叉搜索树-bst)
+- [Day 27：树的综合](#day-27-树的综合)
+- [Day 28：周复习——树与图综合](#day-28-周复习-树与图综合)
 
 ### 第5周·OD100题(上)
-- [day29-graph-dfs](#day29-graph-dfs)
-- [day30-graph-bfs](#day30-graph-bfs)
-- [day31-graph-advanced](#day31-graph-advanced)
-- [day32-backtracking-basics](#day32-backtracking-basics)
-- [day33-backtracking-advanced](#day33-backtracking-advanced)
-- [day34-trie](#day34-trie)
-- [day35-weekly-review](#day35-weekly-review)
+- [Day 29：图-DFS](#day-29-图-dfs)
+- [Day 30：图-BFS](#day-30-图-bfs)
+- [Day 31：图进阶](#day-31-图进阶)
+- [Day 32：回溯基础](#day-32-回溯基础)
+- [Day 33：回溯进阶](#day-33-回溯进阶)
+- [Day 34：Trie（前缀树）](#day-34-trie-前缀树)
+- [Day 35：周复习 — 图、回溯、Trie](#day-35-周复习-图-回溯-trie)
 
 ### 第6周·OD100题(下)
-- [D36-Binary-Search](#d36-binary-search)
-- [D37-Binary-Search-Sorting](#d37-binary-search-sorting)
-- [D38-Heap](#d38-heap)
-- [D39-Bit-Manipulation](#d39-bit-manipulation)
-- [D40-Math](#d40-math)
-- [D41-OD-100](#d41-od-100)
-- [D42-Review](#d42-review)
+- [Day 36：二分搜索](#day-36-二分搜索)
+- [Day 37：二分 + 排序](#day-37-二分-排序)
+- [Day 38：堆](#day-38-堆)
+- [Day 39：位运算](#day-39-位运算)
+- [Day 40：数学综合](#day-40-数学综合)
+- [Day 41：OD 100分实战](#day-41-od-100分实战)
+- [Day 42：周复习](#day-42-周复习)
 
 ### 第7周·OD200题
-- [D43_DP_一维入门](#d43dp一维入门)
-- [D44_DP_一维进阶](#d44dp一维进阶)
-- [D45_DP_二维](#d45dp二维)
-- [D46_DP_高级](#d46dp高级)
-- [D47_DP_字符串](#d47dp字符串)
-- [D48_图_并查集_DP综合](#d48图并查集dp综合)
-- [D49_周复习](#d49周复习)
+- [Day 43：DP 一维入门](#day-43-dp-一维入门)
+- [Day 44：DP 一维进阶](#day-44-dp-一维进阶)
+- [Day 45：DP 二维](#day-45-dp-二维)
+- [Day 46：DP 高级](#day-46-dp-高级)
+- [Day 47：DP 字符串](#day-47-dp-字符串)
+- [Day 48：图 + 并查集 + DP 综合](#day-48-图-并查集-dp-综合)
+- [Day 49：周复习 (DP 全题型回顾 + 限时小测)](#day-49-周复习-dp-全题型回顾-限时小测)
 
 ### 第8周·模拟与冲刺
-- [day-50-od-100-six](#day-50-od-100-six)
-- [day-51-od-100-six-2](#day-51-od-100-six-2)
-- [day-52-od-200-three](#day-52-od-200-three)
-- [day-53-od-200-three-2](#day-53-od-200-three-2)
-- [day-54-mock-test-1](#day-54-mock-test-1)
-- [day-55-mock-test-2](#day-55-mock-test-2)
-- [day-56-final-sprint](#day-56-final-sprint)
+- [Day 50：OD 100分 × 6 实战](#day-50-od-100分-6-实战)
+- [Day 51：OD 100分 × 6 实战](#day-51-od-100分-6-实战)
+- [Day 52：OD 200分 × 3 实战](#day-52-od-200分-3-实战)
+- [Day 53：OD 200分 × 3 实战](#day-53-od-200分-3-实战)
+- [Day 54：🧪 限时模考 #1](#day-54-限时模考-1)
+- [Day 55：🧪 限时模考 #2](#day-55-限时模考-2)
+- [Day 56：🏁 终极冲刺](#day-56-终极冲刺)
 
 ---
-
----
-# .git
-> 共计 0 天
-
 
 ---
 # 第1周·数组与哈希表
